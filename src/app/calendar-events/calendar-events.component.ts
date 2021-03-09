@@ -1,5 +1,6 @@
 import { CalendarEvent } from './../model/calendar-event';
 import { Component, Input, OnInit } from '@angular/core';
+import { AssignedMeeting } from '../model/assigned-meeting';
 
 @Component({
     selector: 'app-calendar-events',
@@ -11,6 +12,8 @@ export class CalendarEventsComponent implements OnInit {
     @Input()
     public events: Array<CalendarEvent> = [];
 
+    @Input()
+    public assignedMeetings: Array<AssignedMeeting> = []
 
     constructor() { }
 

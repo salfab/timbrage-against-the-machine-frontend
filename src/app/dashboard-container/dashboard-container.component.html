@@ -2,6 +2,6 @@
 <input class="token-input" type="text" (change)="tokenChanged($event)" placeholder="Dû à des restrictions techniques Vaudoises, le token ne peut être récupéré automatiquement"/> 
 
 <div class="events-to-tickets-mapper">
-    <app-calendars-container [accessToken]="teamsAccessToken" (meetingsUpdated)="onMeetingsUpdated($event)"></app-calendars-container>
+    <app-calendars-container [accessToken]="teamsAccessToken" (meetingsUpdated)="onMeetingsUpdated($event)" [assignedMeetings]="assignedMeetings"></app-calendars-container>
     <app-tickets-container (assigned)="onAssigned($event)" [assignedMeetings]="assignedMeetings"></app-tickets-container>
 </div>

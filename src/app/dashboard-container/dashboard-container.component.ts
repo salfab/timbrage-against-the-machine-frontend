@@ -36,6 +36,7 @@ export class DashboardContainerComponent implements OnInit {
         console.log(`${meeting?.subject} will be logged on ticket ${evt.issue}`);
         console.log(`${meeting.subject} will be logged on ticket ${evt.issue}`);
         this.assignedMeetings.push(new AssignedMeeting(evt.issue, meeting));
+        this.assignedMeetings = [...this.assignedMeetings];
     } 
     
     public onMeetingsUpdated(evt: MeetingsUpdated) : void {
