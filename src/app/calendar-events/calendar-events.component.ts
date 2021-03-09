@@ -2,27 +2,36 @@ import { CalendarEvent } from './../model/calendar-event';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar-events',
-  templateUrl: './calendar-events.component.html',
-  styleUrls: ['./calendar-events.component.scss']
+    selector: 'app-calendar-events',
+    templateUrl: './calendar-events.component.html',
+    styleUrls: ['./calendar-events.component.scss']
 })
 export class CalendarEventsComponent implements OnInit {
 
-  @Input()
-  public events: Array<CalendarEvent> = [];
+    @Input()
+    public events: Array<CalendarEvent> = [];
 
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  public getDurationInMinutes(event: CalendarEvent) {
-    const endTime = new Date(event.endTime);
-    const startTime = new Date(event.startTime);
-    const duration = ( endTime.valueOf() - startTime.valueOf()) / 60000;
-    
-    return duration;
-  }
+    public getDurationInMinutes(event: CalendarEvent) {
+        const endTime = new Date(event.endTime);
+        const startTime = new Date(event.startTime);
+        const duration = (endTime.valueOf() - startTime.valueOf()) / 60000;
+
+        return duration;
+    }
+
+    public drag(ev: DragEvent) {
+        const targetDiv = ev.target as HTMLDivElement;
+        const objectId = targetDiv.dataset["objectId"];
+
+        if (ev.dataTransfer && targetDiv && objectId) {
+            ev.dataTransfer?.setData("text", objectId);
+        }
+    }
 
 }
