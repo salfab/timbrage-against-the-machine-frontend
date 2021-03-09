@@ -14,4 +14,7 @@ export class DashboardContainerComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    tokenChanged(evt: Event) : void {
+        this.teamsAccessToken = (evt.target as HTMLInputElement).value;
+    }
 }
