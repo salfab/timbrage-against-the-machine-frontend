@@ -23,7 +23,6 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
         this.refreshCalendarEvents();
     }
 
-
     private refreshCalendarEvents() {
         this.teamsApi.getCalendarEvents(this.accessToken)
         .subscribe(o => {

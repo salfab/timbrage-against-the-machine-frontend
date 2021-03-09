@@ -30,7 +30,7 @@ export class CalendarEventsComponent implements OnInit {
         const objectId = targetDiv.dataset["objectId"];
 
         if (ev.dataTransfer && targetDiv && objectId) {
-            ev.dataTransfer?.setData("text", objectId);
+            ev.dataTransfer?.setData("objectId", objectId);
         }
     }
 

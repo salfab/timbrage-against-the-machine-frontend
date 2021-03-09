@@ -1,6 +1,6 @@
 
 <div class="tickets">
-    <div class="ticket card" *ngFor="let ticket of tickets">
+    <div class="ticket card" *ngFor="let ticket of tickets" (drop)="drop($event)"  (dragover)="allowDrop($event)" [attr.data-issue-key]="ticket.issueKey">
         <span class="card__title">{{ticket.issueKey}}</span>
     </div>
 </div>
