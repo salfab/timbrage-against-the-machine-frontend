@@ -1,3 +1,4 @@
+import { MeetingAssigned as MeetingAssignedEvent } from './../model/meeting-assigned';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -16,5 +17,9 @@ export class DashboardContainerComponent implements OnInit {
 
     tokenChanged(evt: Event) : void {
         this.teamsAccessToken = (evt.target as HTMLInputElement).value;
+    }
+
+    public onAssigned(evt: MeetingAssignedEvent) : void {
+        console.log(`${evt.meetingObjectId} will be logged on ticket ${evt.issueKey}`)
     }
 }

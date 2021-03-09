@@ -3,5 +3,5 @@
 
 <div class="events-to-tickets-mapper">
     <app-calendars-container [accessToken]="teamsAccessToken"></app-calendars-container>
-    <app-tickets-container></app-tickets-container>
+    <app-tickets-container (assigned)="onAssigned($event)"></app-tickets-container>
 </div>
