@@ -1,6 +1,6 @@
 
 
-    export interface Calendar {
+    export interface CalendarEvent {
         objectId: string;
         startTime: Date;
         endTime: Date;

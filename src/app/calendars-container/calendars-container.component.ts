@@ -1,3 +1,4 @@
+import { CalendarEvent } from './../model/calendar-event';
 import { Component, OnInit } from '@angular/core';
 import { TeamsApiService } from '../teams-api.service';
 
@@ -8,9 +9,13 @@ import { TeamsApiService } from '../teams-api.service';
 })
 export class CalendarsContainerComponent implements OnInit {
 
+  public calendarEvents: Array<CalendarEvent> = [];
   constructor(private readonly teamsApi: TeamsApiService) { }
 
   ngOnInit(): void {
+    this.teamsApi.getCalendarEvents('token').subscribe(o => {
+      this.calendarEvents = o.value;
+    });
   }
 
 }

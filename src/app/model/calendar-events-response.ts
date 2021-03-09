@@ -1,7 +1,7 @@
-import { Calendar } from "./calendar";
+import { CalendarEvent } from "./calendar-event";
 
 
 export interface CalendarEventsResponse {
     type: string;
-    value: Calendar[];
+    value: CalendarEvent[];
 }
