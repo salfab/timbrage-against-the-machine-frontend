@@ -22,7 +22,12 @@ export class TicketsContainerComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        this.tickets = [{ issueKey: 'PRJXC02-123' } as Ticket, { issueKey: 'PRJXC02-456' } as Ticket, { issueKey: 'PRJXC02-789' } as Ticket, { issueKey: 'ignore this meeting' } as Ticket]
+        const loadedTickets = window.localStorage.getItem('timbrage-against-the-machine-tickets');
+        if (loadedTickets) {
+            this.tickets = JSON.parse(loadedTickets); 
+        } else {
+            this.tickets = [new Ticket('ignore this meeting') as Ticket]
+        }
     }
 
     public drop(event: DragEvent): void {
@@ -51,6 +56,14 @@ export class TicketsContainerComponent implements OnInit {
         event.preventDefault();
     }
 
+    public onJiraKeystroke(event: KeyboardEvent): void {
+        if (event.key === "Enter") {
+            const input = (event.target as HTMLInputElement);
+            this.tickets.push(new Ticket(input.value));
+            input.value = '';
+            window.localStorage.setItem('timbrage-against-the-machine-tickets', JSON.stringify(this.tickets))
+        }
+    }
     public getTotalTimeForTicket(ticket: string): number {
         let total = 0;
         const meetings = this.assignedMeetings.filter(o => o.issue.issueKey === ticket);

@@ -1,3 +1,9 @@
-export interface Ticket {
-    issueKey: string;
+export class Ticket {
+    /**
+     *
+     */
+    constructor(public issueKey: string) {
+        
+    }
+    
 }
