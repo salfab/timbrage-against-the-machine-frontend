@@ -1,5 +1,5 @@
 <div class="events">
-    <div class="card" *ngFor="let event of events" draggable="true" (dragstart)="drag($event)" [attr.data-object-id]="event.objectId">
+    <div class="card" *ngFor="let event of events" draggable="true" (dragstart)="drag($event)" [attr.data-object-id]="event.objectId" [attr.data-clean-global-object-id]="event.eventType === 'Occurrence' ? event.cleanGlobalObjectId : null">
         <span class="card__title">{{event.subject}}</span>
         <div *ngIf="event.eventType === 'Occurrence'">♾️ </div>
         <div>⌛ <span>{{getDurationInMinutes(event)}}</span> minutes</div>

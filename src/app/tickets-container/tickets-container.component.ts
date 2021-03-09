@@ -11,39 +11,47 @@ import { CalendarEvent } from '../model/calendar-event';
 })
 export class TicketsContainerComponent implements OnInit {
 
-    @Output() 
+    @Output()
     public assigned: EventEmitter<MeetingAssignedEvent> = new EventEmitter();
 
     @Input()
     public assignedMeetings: Array<AssignedMeeting> = []
-    
+
     public tickets: Array<Ticket> = [];
 
     constructor() { }
 
     ngOnInit(): void {
-        this.tickets = [{ issueKey: 'PRJXC02-123' } as Ticket, { issueKey: 'PRJXC02-456' } as Ticket, { issueKey: 'PRJXC02-789' } as Ticket]
+        this.tickets = [{ issueKey: 'PRJXC02-123' } as Ticket, { issueKey: 'PRJXC02-456' } as Ticket, { issueKey: 'PRJXC02-789' } as Ticket, { issueKey: 'ignore this meeting' } as Ticket]
     }
 
-    public drop(event: DragEvent) : void {
+    public drop(event: DragEvent): void {
         event.preventDefault();
         const objectId = event.dataTransfer?.getData("objectId");
+        const occurrencesObjectIdsAsString = event.dataTransfer?.getData("occurrencesObjectIds");
 
         const targetDiv = event.target as HTMLDivElement;
         const issueKey = targetDiv.dataset["issueKey"];
         const issue = this.tickets.find(o => o.issueKey === issueKey);
 
         if (objectId && issue) {
-            this.assigned.emit(new MeetingAssignedEvent(issue, objectId))
+            if (occurrencesObjectIdsAsString) {
+                const occurrencesObjectIds: Array<string> = JSON.parse(occurrencesObjectIdsAsString);
+                for (let index = 0; index < occurrencesObjectIds.length; index++) {
+                    const occurenceObjectId = occurrencesObjectIds[index];
+                    this.assigned.emit(new MeetingAssignedEvent(issue, occurenceObjectId))
+                }
+            } else {
+                this.assigned.emit(new MeetingAssignedEvent(issue, objectId))
+            }
         }
     }
 
-    public allowDrop(event: DragEvent) : void {
+    public allowDrop(event: DragEvent): void {
         event.preventDefault();
     }
 
-    public getTotalTimeForTicket(ticket: string) : number
-    {
+    public getTotalTimeForTicket(ticket: string): number {
         let total = 0;
         const meetings = this.assignedMeetings.filter(o => o.issue.issueKey === ticket);
         for (let index = 0; index < meetings.length; index++) {

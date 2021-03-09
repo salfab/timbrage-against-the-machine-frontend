@@ -31,9 +31,15 @@ export class CalendarEventsComponent implements OnInit {
     public drag(ev: DragEvent) {
         const targetDiv = ev.target as HTMLDivElement;
         const objectId = targetDiv.dataset["objectId"];
+        const cleanGlobalObjectId = targetDiv.dataset["cleanGlobalObjectId"];
 
         if (ev.dataTransfer && targetDiv && objectId) {
-            ev.dataTransfer?.setData("objectId", objectId);
+            ev.dataTransfer.setData("objectId", objectId);
+            if (cleanGlobalObjectId) {
+                ev.dataTransfer.setData("cleanGlobalObjectId", cleanGlobalObjectId);
+                const occurrencesObjectId = this.events.filter(o => o.cleanGlobalObjectId === cleanGlobalObjectId).map(o => o.objectId);
+                ev.dataTransfer.setData("occurrencesObjectIds", JSON.stringify(occurrencesObjectId));
+            }
         }
     }
 
