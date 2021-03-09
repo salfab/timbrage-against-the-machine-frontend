@@ -11,7 +11,6 @@ export class TicketsContainerComponent implements OnInit {
   constructor(private readonly ticketsApi: TicketsApiService) { }
 
   ngOnInit(): void {
-    console.log(new Date().toISOString());
     this.ticketsApi.logTimeOnTicket('VAAPI-3422', "Timbrage against the machine.", new Date(), 120).subscribe(o => {
       console.log(o);
     });
