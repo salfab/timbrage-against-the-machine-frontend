@@ -1,6 +1,7 @@
 import { CalendarEvent } from './../model/calendar-event';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TeamsApiService } from '../teams-api.service';
+import { filter } from 'rxjs/operators'
 
 @Component({
     selector: 'app-calendars-container',
@@ -25,8 +26,9 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
 
 
     private refreshCalendarEvents() {
-        this.teamsApi.getCalendarEvents(this.accessToken).subscribe(o => {
-            this.calendarEvents = o.value;
+        this.teamsApi.getCalendarEvents(this.accessToken)
+        .subscribe(o => {
+            this.calendarEvents = o.value.filter(o => o.showAs != 'Oof');
         });
     }
 }
