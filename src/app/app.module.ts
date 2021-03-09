@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
 import { CalendarsContainerComponent } from './calendars-container/calendars-container.component';
 import { TicketsContainerComponent } from './tickets-container/tickets-container.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TicketsContainerComponent } from './tickets-container/tickets-container
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
