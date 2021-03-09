@@ -1,7 +1,6 @@
 import { CalendarEvent } from './../model/calendar-event';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TeamsApiService } from '../teams-api.service';
-import { filter } from 'rxjs/operators'
 
 @Component({
     selector: 'app-calendars-container',
