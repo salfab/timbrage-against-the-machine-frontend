@@ -7,12 +7,15 @@ import { DashboardContainerComponent } from './dashboard-container/dashboard-con
 import { CalendarsContainerComponent } from './calendars-container/calendars-container.component';
 import { TicketsContainerComponent } from './tickets-container/tickets-container.component';
 
+import { CalendarEventsComponent } from './calendar-events/calendar-events.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardContainerComponent,
     CalendarsContainerComponent,
-    TicketsContainerComponent
+    TicketsContainerComponent,
+    CalendarEventsComponent,
   ],
   imports: [
     BrowserModule,
