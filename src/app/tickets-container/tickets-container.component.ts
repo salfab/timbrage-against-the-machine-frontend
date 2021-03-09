@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TicketsApiService } from '../tickets-api.service';
 
 @Component({
   selector: 'app-tickets-container',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketsContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly ticketsApi: TicketsApiService) { }
 
   ngOnInit(): void {
+    console.log(new Date().toISOString());
+    this.ticketsApi.logTimeOnTicket('VAAPI-3422', "Timbrage against the machine.", new Date(), 120).subscribe(o => {
+      console.log(o);
+    });
   }
 
 }

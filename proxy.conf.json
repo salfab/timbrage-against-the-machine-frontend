@@ -1,8 +1,14 @@
 {
-    "/api": {
+    "/rest": {
       "target": "https://teams.microsoft.com",
       "secure": true,
       "changeOrigin": true,
       "debug": true
-    }
+    },
+    "/api": {
+        "target": "https://di.vaudoise.ch/rest",
+        "secure": false,
+        "changeOrigin": true,
+        "debug": true
+      }
   }
