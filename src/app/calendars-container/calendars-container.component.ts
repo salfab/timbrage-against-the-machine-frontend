@@ -1,6 +1,7 @@
 import { CalendarEvent } from './../model/calendar-event';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TeamsApiService } from '../teams-api.service';
+import { MeetingsUpdated } from '../model/meetings-updated';
 
 @Component({
     selector: 'app-calendars-container',
@@ -10,6 +11,8 @@ import { TeamsApiService } from '../teams-api.service';
 export class CalendarsContainerComponent implements OnInit, OnChanges {
     @Input()
     public accessToken: string = "";
+
+    @Output() close: EventEmitter<MeetingsUpdated> = new EventEmitter();  @Output() meetingsUpdated: EventEmitter<MeetingsUpdated> = new EventEmitter();
 
     public calendarEvents: Array<CalendarEvent> = [];
     constructor(private readonly teamsApi: TeamsApiService) { }
@@ -27,6 +30,7 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
         this.teamsApi.getCalendarEvents(this.accessToken)
         .subscribe(o => {
             this.calendarEvents = o.value.filter(o => o.showAs != 'Oof');
+            this.meetingsUpdated.emit(new MeetingsUpdated(this.calendarEvents));
         });
     }
 }

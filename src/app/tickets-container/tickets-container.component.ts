@@ -1,6 +1,8 @@
+import { AssignedMeeting } from './../model/assigned-meeting';
 import { Ticket } from './../model/ticket';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MeetingAssigned } from '../model/meeting-assigned';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MeetingAssignedEvent } from '../model/meeting-assigned';
+import { CalendarEvent } from '../model/calendar-event';
 
 @Component({
     selector: 'app-tickets-container',
@@ -10,7 +12,10 @@ import { MeetingAssigned } from '../model/meeting-assigned';
 export class TicketsContainerComponent implements OnInit {
 
     @Output() 
-    public assigned: EventEmitter<MeetingAssigned> = new EventEmitter();
+    public assigned: EventEmitter<MeetingAssignedEvent> = new EventEmitter();
+
+    @Input()
+    public assignedMeetings: Array<AssignedMeeting> = []
     
     public tickets: Array<Ticket> = [];
 
@@ -26,14 +31,36 @@ export class TicketsContainerComponent implements OnInit {
 
         const targetDiv = event.target as HTMLDivElement;
         const issueKey = targetDiv.dataset["issueKey"];
+        const issue = this.tickets.find(o => o.issueKey === issueKey);
 
-        if (objectId && issueKey) {
-            this.assigned.emit(new MeetingAssigned(issueKey, objectId))
+        if (objectId && issue) {
+            this.assigned.emit(new MeetingAssignedEvent(issue, objectId))
         }
     }
 
     public allowDrop(event: DragEvent) : void {
         event.preventDefault();
+    }
+
+    public getTotalTimeForTicket(ticket: string) : number
+    {
+        let total = 0;
+        const meetings = this.assignedMeetings.filter(o => o.issue.issueKey === ticket);
+        for (let index = 0; index < meetings.length; index++) {
+            const meeting = meetings[index];
+            const minutes = this.getDurationInMinutes(meeting.meeting);
+            total = total + minutes;
+        }
+        return total;
+    }
+
+    // todo:this method is duplicated : refactor code to have it only in 1 place. (in the meeting class ?)
+    public getDurationInMinutes(event: CalendarEvent) {
+        const endTime = new Date(event.endTime);
+        const startTime = new Date(event.startTime);
+        const duration = (endTime.valueOf() - startTime.valueOf()) / 60000;
+
+        return duration;
     }
 
 }

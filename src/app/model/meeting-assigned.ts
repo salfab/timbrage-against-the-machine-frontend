@@ -1,12 +1,13 @@
-import { CalendarEvent } from './calendar-event';
 import { Ticket } from "./ticket";
 
-export class MeetingAssigned {
+export class MeetingAssignedEvent {
     /**
      *
      */
-    constructor(public issueKey: string, public meetingObjectId: string) {
+    constructor(public issue: Ticket, public meetingObjectId: string) {
         
     }
 
 }
+
+
