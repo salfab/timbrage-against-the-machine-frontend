@@ -19,7 +19,7 @@ export class TicketsApiService {
                   started: formattedDate,
                   timeSpentSeconds: duration
   }
-  return this.http.post<any>("/api/latest/issue/" + ticketId + "/worklog", body, this.httpOptions);
+  return this.http.post<any>("/rest/api/latest/issue/" + ticketId + "/worklog", body, this.httpOptions);
 }
 
 }
