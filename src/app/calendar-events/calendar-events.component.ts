@@ -17,4 +17,12 @@ export class CalendarEventsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public getDurationInMinutes(event: CalendarEvent) {
+    const endTime = new Date(event.endTime);
+    const startTime = new Date(event.startTime);
+    const duration = ( endTime.valueOf() - startTime.valueOf()) / 60000;
+    
+    return duration;
+  }
+
 }

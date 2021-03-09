@@ -1,5 +1,7 @@
 <div class="events">
     <div class="card" *ngFor="let event of events">
-        <span>{{event.subject}}</span>
+        <span class="card__title">{{event.subject}}</span>
+        <div *ngIf="event.eventType === 'Occurrence'">♾️ </div>
+        <div>⌛ <span>{{getDurationInMinutes(event)}}</span> minutes</div>
     </div>
 </div>
