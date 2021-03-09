@@ -3,14 +3,14 @@ import { Observable } from 'rxjs';
 import { CalendarEventsResponse } from './model/calendar-events-response';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TeamsApiService {
 
-  constructor(accessToken: string) { }
+    constructor(accessToken: string) { }
 
-  public getCalendarEvents(): Observable<CalendarEventsResponse> {
-    throw new Error('not implemented');
+    public getCalendarEvents(accessToken: string): Observable<CalendarEventsResponse> {
+        throw new Error('not implemented');
 
-  }
+    }
 }
