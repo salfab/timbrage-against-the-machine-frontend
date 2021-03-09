@@ -1,6 +1,5 @@
 
 import { Component, OnInit } from '@angular/core';
-import { TeamsAuthenticationService } from '../teams-authentication.service';
 
 @Component({
   selector: 'app-dashboard-container',
@@ -9,7 +8,7 @@ import { TeamsAuthenticationService } from '../teams-authentication.service';
 })
 export class DashboardContainerComponent implements OnInit {
 
-  constructor(private readonly teamsAuth: TeamsAuthenticationService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
