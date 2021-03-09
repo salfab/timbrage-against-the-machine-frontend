@@ -26,7 +26,7 @@ export class TicketsContainerComponent implements OnInit {
         if (loadedTickets) {
             this.tickets = JSON.parse(loadedTickets); 
         } else {
-            this.tickets = [new Ticket('ignore this meeting') as Ticket]
+            this.tickets = [new Ticket('ignore this meeting', true) as Ticket]
         }
     }
 
