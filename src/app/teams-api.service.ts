@@ -7,10 +7,9 @@ import { CalendarEventsResponse } from './model/calendar-events-response';
 })
 export class TeamsApiService {
 
-    constructor(accessToken: string) { }
+    constructor() { }
 
     public getCalendarEvents(accessToken: string): Observable<CalendarEventsResponse> {
         throw new Error('not implemented');
-
     }
 }
