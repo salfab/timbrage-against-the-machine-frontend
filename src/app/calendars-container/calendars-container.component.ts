@@ -1,5 +1,5 @@
 import { CalendarEvent } from './../model/calendar-event';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TeamsApiService } from '../teams-api.service';
 
 @Component({
@@ -8,12 +8,14 @@ import { TeamsApiService } from '../teams-api.service';
   styleUrls: ['./calendars-container.component.scss']
 })
 export class CalendarsContainerComponent implements OnInit {
+  @Input()
+  public teamsAccessToken: string = "";
 
   public calendarEvents: Array<CalendarEvent> = [];
   constructor(private readonly teamsApi: TeamsApiService) { }
 
   ngOnInit(): void {
-    this.teamsApi.getCalendarEvents('token').subscribe(o => {
+    this.teamsApi.getCalendarEvents(this.teamsAccessToken).subscribe(o => {
       this.calendarEvents = o.value;
     });
   }

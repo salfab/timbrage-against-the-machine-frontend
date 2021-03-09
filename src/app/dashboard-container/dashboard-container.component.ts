@@ -2,15 +2,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard-container',
-  templateUrl: './dashboard-container.component.html',
-  styleUrls: ['./dashboard-container.component.scss']
+    selector: 'app-dashboard-container',
+    templateUrl: './dashboard-container.component.html',
+    styleUrls: ['./dashboard-container.component.scss']
 })
 export class DashboardContainerComponent implements OnInit {
 
-  constructor() { }
+    public teamsAccessToken: string = "";
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

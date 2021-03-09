@@ -1,4 +1,6 @@
-<p>dashboard-container works!</p>
-<app-calendars-container></app-calendars-container>
-<app-tickets-container></app-tickets-container>
-<!-- <iframe src="loginUrl"></iframe> -->
+<div class="events-to-tickets-mapper">
+    <label>entrez votre access token Teams</label>
+    <input type="text" [(value)]="teamsAccessToken" /> 
+    <app-calendars-container [accessToken]="teamsAccessToken"></app-calendars-container>
+    <app-tickets-container></app-tickets-container>
+</div>
