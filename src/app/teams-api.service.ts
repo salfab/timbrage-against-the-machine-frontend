@@ -11,14 +11,14 @@ export class TeamsApiService {
     constructor(private http: HttpClient) { }
 
     public getCalendarEvents(accessToken: string): Observable<CalendarEventsResponse> {
-        const json = this.generateStubbedJson();
-        return of(json as unknown as CalendarEventsResponse);
-        // const httpOptions = {
-        //     headers: new HttpHeaders({ 'Content-Type': 'application/json',
-        //     'Authorization': `Bearer ${accessToken}` })
-        //   };
+        //const json = this.generateStubbedJson();
+        //return of(json as unknown as CalendarEventsResponse);
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}` })
+          };
 
-        // return this.http.get<CalendarEventsResponse>("/api/mt/emea/beta/me/calendarEvents?StartDate=2021-03-13T23:00:00.000Z&EndDate=2021-03-20T23:00:00.000Z", httpOptions);
+        return this.http.get<CalendarEventsResponse>("/api/mt/emea/beta/me/calendarEvents?StartDate=2021-03-13T23:00:00.000Z&EndDate=2021-03-20T23:00:00.000Z", httpOptions);
     }
     generateStubbedJson() {
         return ({
