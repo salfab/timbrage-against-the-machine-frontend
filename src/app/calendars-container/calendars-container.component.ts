@@ -31,7 +31,6 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
             this.calendarEvents = this.calendarEvents.filter(o => this.assignedMeetings.findIndex(am => am.meeting.objectId === o.objectId) == -1)
         }
 
-
     }
 
     ngOnInit(): void {
