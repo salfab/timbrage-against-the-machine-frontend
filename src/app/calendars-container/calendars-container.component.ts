@@ -41,6 +41,7 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
     private refreshCalendarEvents() {
         this.teamsApi.getCalendarEvents(this.accessToken)
         .subscribe(o => {
+            // TODO : Create constants for the whole application and start using them, including here.
             const inOfficeMeetings = o.value.filter(o => o.showAs != 'Oof');
             this.calendarEvents = inOfficeMeetings;
             this.meetingsUpdated.emit(new MeetingsUpdated(inOfficeMeetings));
