@@ -35,7 +35,7 @@ export class DashboardContainerComponent implements OnInit {
         return this.totalMinutesWorked - timeToDeduct;
     }
 
-    totalHoursChanged(evt: Event) : void {
+    public totalHoursChanged(evt: Event) : void {
         const hoursInput = (evt.target as HTMLInputElement).value;
         const separatorPosition = hoursInput.indexOf(':');
         const hoursAsString = hoursInput.slice(0, separatorPosition-1);
