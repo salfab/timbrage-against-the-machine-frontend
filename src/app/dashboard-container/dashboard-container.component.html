@@ -3,7 +3,7 @@
 <div>Entrez votre total d'heures timbrées pour la période</div>
 <input class="total-hours-input" type="text" (change)="totalHoursChanged($event)" placeholder="178:34"/> 
 
-temps passé hors meetings : {{getUnassignedTime()}} minutes
+Temps passé hors meetings : {{getUnassignedTime()}} minutes
 
 <div class="events-to-tickets-mapper">
     <app-calendars-container [accessToken]="teamsAccessToken" (meetingsUpdated)="onMeetingsUpdated($event)" [assignedMeetings]="assignedMeetings"></app-calendars-container>
