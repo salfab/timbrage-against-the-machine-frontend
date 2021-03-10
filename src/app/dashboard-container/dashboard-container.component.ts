@@ -46,7 +46,6 @@ export class DashboardContainerComponent implements OnInit {
 
         const meeting = this.meetings.find(m => m.objectId == evt.meetingObjectId);
 
-
         if (meeting == null) {
             throw new Error(`meeting not found: ${evt.meetingObjectId}`)
         }
