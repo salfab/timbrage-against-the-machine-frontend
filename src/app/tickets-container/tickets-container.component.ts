@@ -66,6 +66,7 @@ export class TicketsContainerComponent implements OnInit {
     }
     public getTotalTimeForTicket(ticket: string): number {
         let total = 0;
+        // todo use meaningful param naming in lambda
         const meetings = this.assignedMeetings.filter(o => o.issue.issueKey === ticket);
         for (let index = 0; index < meetings.length; index++) {
             const meeting = meetings[index];
