@@ -42,6 +42,7 @@ export class DashboardContainerComponent implements OnInit {
         const minutesAsString = hoursInput.slice(separatorPosition+1);
         this.totalMinutesWorked = Number.parseInt(hoursAsString) * 60 + Number.parseInt(minutesAsString);
     }
+    
     public onAssigned(evt: MeetingAssignedEvent) : void {
 
         const meeting = this.meetings.find(m => m.objectId == evt.meetingObjectId);
