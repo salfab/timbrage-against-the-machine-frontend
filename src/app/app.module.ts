@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
 import { CalendarsContainerComponent } from './calendars-container/calendars-container.component';
 import { TicketsContainerComponent } from './tickets-container/tickets-container.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { CalendarEventsComponent } from './calendar-events/calendar-events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardContainerComponent,
     CalendarsContainerComponent,
-    TicketsContainerComponent
+    TicketsContainerComponent,
+    CalendarEventsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

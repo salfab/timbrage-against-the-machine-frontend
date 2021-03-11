@@ -1,1 +1,9 @@
-<p>tickets-container works!</p>
+<div class="tickets">
+    <div class="ticket card" *ngFor="let ticket of tickets" (drop)="drop($event)"  (dragover)="allowDrop($event)" [attr.data-issue-key]="ticket.issueKey">
+        <span class="card__title">{{ticket.issueKey}}</span>
+        <div>⌛: {{getTotalTimeForTicket(ticket.issueKey)}} minutes</div>
+    </div>
+</div>
+
+<label>Ajouter</label>
+<input class="issueKey" type="text" (keyup)="onJiraKeystroke($event)" placeholder="ex. PRJCX02-666"/> 
