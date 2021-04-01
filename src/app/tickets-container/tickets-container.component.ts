@@ -18,16 +18,27 @@ export class TicketsContainerComponent implements OnInit {
     public assignedMeetings: Array<AssignedMeeting> = []
 
     public tickets: Array<Ticket> = [];
+    
 
     constructor() { }
 
     ngOnInit(): void {
         const loadedTickets = window.localStorage.getItem('timbrage-against-the-machine-tickets');
         if (loadedTickets) {
-            this.tickets = JSON.parse(loadedTickets); 
+            const persistedState = JSON.parse(loadedTickets); 
+            for (let index = 0; index < persistedState.length; index++) {
+                const persistedTicket = persistedState[index];
+                this.tickets.push(new Ticket(persistedTicket.issueKey, persistedState?.ignoreInTimeCalculation));
+            }
         } else {
-            this.tickets = [new Ticket('ignore this meeting', true) as Ticket]
+            this.tickets = [new Ticket('ignore this meeting', true)]
         }
+    }
+
+    public onDiscard(event: Event, ticket: Ticket): void {
+        const index = this.tickets.indexOf(ticket);
+        this.tickets.splice(index,1);
+        this.saveTicketsInLocalStorage(this.tickets);
     }
 
     public drop(event: DragEvent): void {
@@ -61,8 +72,11 @@ export class TicketsContainerComponent implements OnInit {
             const input = (event.target as HTMLInputElement);
             this.tickets.push(new Ticket(input.value));
             input.value = '';
-            window.localStorage.setItem('timbrage-against-the-machine-tickets', JSON.stringify(this.tickets))
+            this.saveTicketsInLocalStorage(this.tickets);
         }
+    }
+    private saveTicketsInLocalStorage(tickets: Ticket[]) {
+        window.localStorage.setItem('timbrage-against-the-machine-tickets', JSON.stringify(this.tickets));
     }
     public getTotalTimeForTicket(ticket: string): number {
         let total = 0;

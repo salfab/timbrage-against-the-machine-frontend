@@ -18,3 +18,10 @@
   .container {
     padding: 2px 16px;
   }
+
+  .discard-button {
+    display: block;
+    position: relative;
+    // this sucks : I can do better than that !
+    left: 200px;
+  }

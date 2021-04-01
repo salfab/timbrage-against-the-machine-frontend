@@ -1,6 +1,7 @@
 <div class="tickets">
     <div class="ticket card" *ngFor="let ticket of tickets" (drop)="drop($event)"  (dragover)="allowDrop($event)" [attr.data-issue-key]="ticket.issueKey">
-        <span class="card__title">{{ticket.issueKey}}</span>
+        <i class="fa fa-times discard-button" (click)="onDiscard($event, ticket)"> </i>
+        <span class="card__title"><a href="{{ticket.jiraLink}}" target="_blank">{{ticket.issueKey}}</a></span>
         <div>⌛: {{getTotalTimeForTicket(ticket.issueKey)}} minutes</div>
     </div>
 </div>

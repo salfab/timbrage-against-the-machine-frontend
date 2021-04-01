@@ -19,6 +19,7 @@ export class DashboardContainerComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
+        this.teamsAccessToken = localStorage.getItem('teams-token') ?? '';
     }
 
     tokenChanged(evt: Event) : void {
@@ -38,7 +39,7 @@ export class DashboardContainerComponent implements OnInit {
     public totalHoursChanged(evt: Event) : void {
         const hoursInput = (evt.target as HTMLInputElement).value;
         const separatorPosition = hoursInput.indexOf(':');
-        const hoursAsString = hoursInput.slice(0, separatorPosition-1);
+        const hoursAsString = hoursInput.slice(0, separatorPosition);
         const minutesAsString = hoursInput.slice(separatorPosition+1);
         this.totalMinutesWorked = Number.parseInt(hoursAsString) * 60 + Number.parseInt(minutesAsString);
     }
