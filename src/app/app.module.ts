@@ -9,6 +9,7 @@ import { TicketsContainerComponent } from './tickets-container/tickets-container
 import { HttpClientModule } from '@angular/common/http';
 
 import { CalendarEventsComponent } from './calendar-events/calendar-events.component';
+import { TokenWebHookComponent } from './token-web-hook/token-web-hook.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CalendarEventsComponent } from './calendar-events/calendar-events.compo
     CalendarsContainerComponent,
     TicketsContainerComponent,
     CalendarEventsComponent,
+    TokenWebHookComponent,
   ],
   imports: [
     BrowserModule,

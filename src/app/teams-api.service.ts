@@ -11,14 +11,15 @@ export class TeamsApiService {
     constructor(private http: HttpClient) { }
 
     public getCalendarEvents(accessToken: string): Observable<CalendarEventsResponse> {
-        //const json = this.generateStubbedJson();
-        //return of(json as unknown as CalendarEventsResponse);
+        // const json = this.generateStubbedJson();
+        // return of(json as unknown as CalendarEventsResponse);
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}` })
           };
 
-        return this.http.get<CalendarEventsResponse>("/api/mt/emea/beta/me/calendarEvents?StartDate=2021-03-13T23:00:00.000Z&EndDate=2021-03-20T23:00:00.000Z", httpOptions);
+        return this.http.get<CalendarEventsResponse>("/api/mt/emea/beta/me/calendarEvents?StartDate=2021-03-01T23:00:00.000Z&EndDate=2021-03-31T23:00:00.000Z", httpOptions);
+          // details for a given meeting is on URL : https://teams.microsoft.com/api/mt/emea/beta/me/calendarEvents/AAMkAGE3MWRjNjM0LTVlM2QtNDM4NS1iZmIxLTJjMTY4NDQyNTQwYQBGAAAAAABRawK5h15_S4aNZFtTlSkgBwCPvK8Y3ezTQ7UVKjhZq8_RAAAAnKNzAABhDI-fWRcMQq87E8bANgGnAAHKRrqsAAA=?useICalUId=false&eventType=&eventStartDateTime=
     }
     generateStubbedJson() {
         return ({
@@ -309,7 +310,7 @@ export class TeamsApiService {
                     "isResponseRequested": true,
                     "attendees": [],
                     "isReminderSet": true,
-                    "showAs": "Busy",
+                    "showAs": "Oof",
                     "isPrivate": true,
                     "attachments": [],
                     "conflictingMeetings": [],
