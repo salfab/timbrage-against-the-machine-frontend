@@ -28,7 +28,7 @@ export class TicketsContainerComponent implements OnInit {
             const persistedState = JSON.parse(loadedTickets); 
             for (let index = 0; index < persistedState.length; index++) {
                 const persistedTicket = persistedState[index];
-                this.tickets.push(new Ticket(persistedTicket.issueKey, persistedState?.ignoreInTimeCalculation));
+                this.tickets.push(new Ticket(persistedTicket.issueKey, persistedTicket?.ignoreInTimeCalculation));
             }
         } else {
             this.tickets = [new Ticket('ignore this meeting', true)]

@@ -25,3 +25,9 @@
     // this sucks : I can do better than that !
     left: 200px;
   }
+
+  .tickets {
+    display: flex;
+    width: 800px;
+    flex-wrap: wrap;
+  }
