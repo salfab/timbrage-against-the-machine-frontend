@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CalendarEventsComponent } from './calendar-events/calendar-events.component';
 import { TokenWebHookComponent } from './token-web-hook/token-web-hook.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TokenWebHookComponent } from './token-web-hook/token-web-hook.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
