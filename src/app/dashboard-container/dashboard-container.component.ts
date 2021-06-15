@@ -1,3 +1,6 @@
+import { TimeRange } from './../model/time-range';
+import { TimerangeService } from './../timerange.service';
+import { TimerangeMode } from './../model/timerange-mode';
 import { MeetingAssignedEvent } from './../model/meeting-assigned';
 
 import { Component, OnInit } from '@angular/core';
@@ -16,10 +19,17 @@ export class DashboardContainerComponent implements OnInit {
     public teamsAccessToken: string = "";
     public assignedMeetings: Array<AssignedMeeting> = [];
     public meetings: Array<CalendarEvent> = [];
-    constructor() { }
+
+    public initialDate: Date = new Date();
+
+    public timeRange!: TimeRange;
+    public mode: TimerangeMode = TimerangeMode.monthly;
+
+    constructor(private timerangeService: TimerangeService) { }
 
     ngOnInit(): void {
         this.teamsAccessToken = localStorage.getItem('teams-token') ?? '';
+        this.timeRange = this.timerangeService.getTimeRange(this.mode, new Date())
     }
 
     tokenChanged(evt: Event) : void {
@@ -59,7 +69,6 @@ export class DashboardContainerComponent implements OnInit {
     } 
     
     public onMeetingsUpdated(evt: MeetingsUpdated) : void {
-        debugger
         this.meetings = evt.meetings;
     }
 
@@ -70,5 +79,9 @@ export class DashboardContainerComponent implements OnInit {
         const duration = (endTime.valueOf() - startTime.valueOf()) / 60000;
 
         return duration;
+    }
+
+    public timerangeChanged(event: TimeRange) {
+        this.timeRange = event;
     }
 }
