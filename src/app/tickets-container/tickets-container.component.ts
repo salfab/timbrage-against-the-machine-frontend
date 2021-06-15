@@ -78,6 +78,7 @@ export class TicketsContainerComponent implements OnInit {
     private saveTicketsInLocalStorage(tickets: Ticket[]) {
         window.localStorage.setItem('timbrage-against-the-machine-tickets', JSON.stringify(this.tickets));
     }
+    
     public getTotalTimeForTicket(ticket: string): number {
         let total = 0;
         // todo use meaningful param naming in lambda

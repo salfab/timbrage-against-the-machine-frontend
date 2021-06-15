@@ -1,0 +1,3 @@
+<div class="stats-panel">
+    <span *ngFor="let item of percentageTimePerTicket | keyvalue"> {{ item.key  }}: {{ item.value | number}}%</span>
+</div>

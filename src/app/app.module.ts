@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CalendarEventsComponent } from './calendar-events/calendar-events.component';
 import { TokenWebHookComponent } from './token-web-hook/token-web-hook.component';
 import { TimerangeSelectorComponent } from './timerange-selector/timerange-selector.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TimerangeSelectorComponent } from './timerange-selector/timerange-selec
     CalendarEventsComponent,
     TokenWebHookComponent,
     TimerangeSelectorComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule,
