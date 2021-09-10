@@ -11,7 +11,7 @@
         <i class="fa fa-times discard-button" (click)="onDiscard($event, ticket)"> </i>
         <span class="card__title"><a href="{{ticket.jiraLink}}" target="_blank">{{ticket.issueKey}}</a></span>
         <div>⌛: {{getTotalTimeForTicket(ticket.issueKey)}} minutes</div>
-        <div>📅: {{getMeetingsByTicket(ticket.issueKey).length}} meetings assignés <button (click)="openDetails(ticket.issueKey)">Détails</button></div>
+        <div>📅: <button (click)="openDetails(ticket.issueKey)">{{getMeetingsByTicket(ticket.issueKey).length}} meetings assignés</button></div>
     </div>
 </div>
 
