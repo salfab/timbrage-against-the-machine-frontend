@@ -1,7 +1,7 @@
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    margin: 5px;
+    margin: 5px 0;
     min-height: 100px;
     width: 15em;
     padding: 10px;
@@ -9,25 +9,26 @@
     &__title {
         font-weight: bold;
     }
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  .container {
-    padding: 2px 16px;
-  }
+}
 
-  .discard-button {
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.discard-button {
     display: block;
     position: relative;
     // this sucks : I can do better than that !
     left: 200px;
-  }
+}
 
-  .tickets {
+.tickets {
     display: flex;
-    width: 800px;
+    width: 700px;
     flex-wrap: wrap;
-  }
+    justify-content: space-between;
+}
