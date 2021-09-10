@@ -3,6 +3,7 @@ import { Ticket } from './../model/ticket';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MeetingAssignedEvent } from '../model/meeting-assigned';
 import { CalendarEvent } from '../model/calendar-event';
+import { ChangeAssignedMeetingsEvent } from '../model/change-assigned-meetings';
 
 @Component({
     selector: 'app-tickets-container',
@@ -10,6 +11,8 @@ import { CalendarEvent } from '../model/calendar-event';
     styleUrls: ['./tickets-container.component.scss']
 })
 export class TicketsContainerComponent implements OnInit {
+    @Output()
+    public assignedMeetingsUpdated: EventEmitter<ChangeAssignedMeetingsEvent> = new EventEmitter();
 
     @Output()
     public assigned: EventEmitter<MeetingAssignedEvent> = new EventEmitter();
@@ -18,6 +21,8 @@ export class TicketsContainerComponent implements OnInit {
     public assignedMeetings: Array<AssignedMeeting> = []
 
     public tickets: Array<Ticket> = [];
+    public isDetailsPanelShown: boolean = false;
+    public selectedTicketDetails: string = "";
     
 
     constructor() { }
@@ -82,7 +87,7 @@ export class TicketsContainerComponent implements OnInit {
     public getTotalTimeForTicket(ticket: string): number {
         let total = 0;
         // todo use meaningful param naming in lambda
-        const meetings = this.assignedMeetings.filter(o => o.issue.issueKey === ticket);
+        const meetings = this.getMeetingsByTicket(ticket);
         for (let index = 0; index < meetings.length; index++) {
             const meeting = meetings[index];
             const minutes = this.getDurationInMinutes(meeting.meeting);
@@ -91,8 +96,12 @@ export class TicketsContainerComponent implements OnInit {
         return total;
     }
 
+    public getMeetingsByTicket(ticket: string): AssignedMeeting[] {
+        return this.assignedMeetings.filter(o => o.issue.issueKey === ticket);
+    }
+
     // todo:this method is duplicated : refactor code to have it only in 1 place. (in the meeting class ?)
-    public getDurationInMinutes(event: CalendarEvent) {
+    public getDurationInMinutes(event: CalendarEvent): number {
         const endTime = new Date(event.endTime);
         const startTime = new Date(event.startTime);
         const duration = (endTime.valueOf() - startTime.valueOf()) / 60000;
@@ -100,4 +109,19 @@ export class TicketsContainerComponent implements OnInit {
         return duration;
     }
 
+    public openDetails(ticket: string): void {
+        this.isDetailsPanelShown = true;
+        this.selectedTicketDetails = ticket;
+    }
+
+    public closeDetails(): void {
+        this.isDetailsPanelShown = false;
+    }
+
+    public unassignMeeting(assignedMeeting: AssignedMeeting): void {
+        const deassignedMeetings = this.assignedMeetings.splice(this.assignedMeetings.indexOf(assignedMeeting), 1);
+        this.assignedMeetingsUpdated.emit(new ChangeAssignedMeetingsEvent(this.assignedMeetings, deassignedMeetings));
+        debugger
+    }
+    
 }

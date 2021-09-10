@@ -23,8 +23,10 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
     @Output() close: EventEmitter<MeetingsUpdated> = new EventEmitter();  @Output() meetingsUpdated: EventEmitter<MeetingsUpdated> = new EventEmitter();
 
     public calendarEvents: Array<CalendarEvent> = [];
+    public originalCalendarEventsList: Array<CalendarEvent> = [];
     constructor(private readonly teamsApi: TeamsApiService) { }
     ngOnChanges(changes: SimpleChanges): void {
+
         if (changes['accessToken']) {
             console.log(`access token: ${changes['accessToken'].currentValue}`);
             this.refreshCalendarEvents();
@@ -35,7 +37,7 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
         }
 
         if (changes['assignedMeetings']) {
-            this.calendarEvents = this.calendarEvents.filter(o => this.assignedMeetings.findIndex(am => am.meeting.objectId === o.objectId) == -1)
+            this.calendarEvents = this.originalCalendarEventsList.filter(o => this.assignedMeetings.findIndex(am => am.meeting.objectId === o.objectId) == -1)
         }
     }
 
@@ -49,6 +51,7 @@ export class CalendarsContainerComponent implements OnInit, OnChanges {
             // TODO : Create constants for the whole application and start using them, including here.
             const inOfficeMeetings = o.value.filter(o => o.showAs != 'Oof');
             this.calendarEvents = inOfficeMeetings;
+            this.originalCalendarEventsList = this.calendarEvents;
             this.meetingsUpdated.emit(new MeetingsUpdated(inOfficeMeetings));
         });
     }

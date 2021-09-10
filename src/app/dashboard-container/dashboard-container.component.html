@@ -8,7 +8,7 @@ Temps passé hors meetings : {{getUnassignedTime()}} minutes
 <app-timerange-selector [mode]="mode" [initialDate]="initialDate" (timerangeChanged)="timerangeChanged($event)"></app-timerange-selector>
 <div class="events-to-tickets-mapper">
     <app-calendars-container [accessToken]="teamsAccessToken" (meetingsUpdated)="onMeetingsUpdated($event)" [assignedMeetings]="assignedMeetings" [timeRange]="timeRange"></app-calendars-container>
-    <app-tickets-container (assigned)="onAssigned($event)" [assignedMeetings]="assignedMeetings"></app-tickets-container>
+    <app-tickets-container (assigned)="onAssigned($event)" [assignedMeetings]="assignedMeetings" (assignedMeetingsUpdated)="assignedMeetingsUpdated($event)"></app-tickets-container>
 </div>
 
 <app-stats [assignedMeetings]="assignedMeetings" [totalWorktime]="totalMinutesWorked" [unassignedTime]="getUnassignedTime()"></app-stats>

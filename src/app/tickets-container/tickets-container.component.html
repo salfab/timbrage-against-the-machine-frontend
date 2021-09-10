@@ -1,8 +1,17 @@
+<!-- when revamping UI : move this elsewhere  -->
+<div *ngIf="isDetailsPanelShown">
+    <button (click)="closeDetails()">Fermer</button>
+    <ul>
+        <li *ngFor="let assignedMeeting of getMeetingsByTicket(selectedTicketDetails)">{{assignedMeeting.meeting.subject}} <button (click)="unassignMeeting(assignedMeeting)">X</button></li>
+    </ul>
+</div>
+
 <div class="tickets">
     <div class="ticket card" *ngFor="let ticket of tickets" (drop)="drop($event)"  (dragover)="allowDrop($event)" [attr.data-issue-key]="ticket.issueKey">
         <i class="fa fa-times discard-button" (click)="onDiscard($event, ticket)"> </i>
         <span class="card__title"><a href="{{ticket.jiraLink}}" target="_blank">{{ticket.issueKey}}</a></span>
         <div>⌛: {{getTotalTimeForTicket(ticket.issueKey)}} minutes</div>
+        <div>📅: {{getMeetingsByTicket(ticket.issueKey).length}} meetings assignés <button (click)="openDetails(ticket.issueKey)">Détails</button></div>
     </div>
 </div>
 

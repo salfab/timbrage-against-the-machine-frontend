@@ -1,12 +1,13 @@
+import { AssignedMeeting } from './../model/assigned-meeting';
 import { TimeRange } from './../model/time-range';
 import { TimerangeService } from './../timerange.service';
 import { TimerangeMode } from './../model/timerange-mode';
 import { MeetingAssignedEvent } from './../model/meeting-assigned';
 
 import { Component, OnInit } from '@angular/core';
-import { AssignedMeeting } from '../model/assigned-meeting';
 import { CalendarEvent } from '../model/calendar-event';
 import { MeetingsUpdated } from '../model/meetings-updated';
+import { ChangeAssignedMeetingsEvent } from '../model/change-assigned-meetings';
 
 @Component({
     selector: 'app-dashboard-container',
@@ -73,7 +74,7 @@ export class DashboardContainerComponent implements OnInit {
     }
 
     // todo : refactor this method because it is duplicated in at least 2 other places.
-    public getDurationInMinutes(event: CalendarEvent) {
+    public getDurationInMinutes(event: CalendarEvent) : number {
         const endTime = new Date(event.endTime);
         const startTime = new Date(event.startTime);
         const duration = (endTime.valueOf() - startTime.valueOf()) / 60000;
@@ -81,7 +82,13 @@ export class DashboardContainerComponent implements OnInit {
         return duration;
     }
 
-    public timerangeChanged(event: TimeRange) {
+    public timerangeChanged(event: TimeRange) : void {
         this.timeRange = event;
+    }
+
+    public assignedMeetingsUpdated(changeAssignedMeetingsEvent: ChangeAssignedMeetingsEvent) : void {
+        this.assignedMeetings = changeAssignedMeetingsEvent.assignedMeetings;
+        this.assignedMeetings = [...this.assignedMeetings];
+        debugger
     }
 }
