@@ -7,9 +7,9 @@
 </div>
 
 <div class="tickets">
-    <div class="ticket card" *ngFor="let ticket of tickets" (drop)="drop($event)"  (dragover)="allowDrop($event)" [attr.data-issue-key]="ticket.issueKey">
+    <div class="ticket card" *ngFor="let ticket of tickets" (drop)="drop($event)" (dragover)="allowDrop($event)" [attr.data-issue-key]="ticket.issueKey">
         <i class="fa fa-times discard-button" (click)="onDiscard($event, ticket)"> </i>
-        <span class="card__title"><a href="{{ticket.jiraLink}}" target="_blank">{{ticket.issueKey}}</a></span>
+        <span class="card__title"><a href="{{ticket.jiraLink}}&timeLogged={{getTotalTimeForTicket(ticket.issueKey)}}m" target="_blank">{{ticket.issueKey}}</a></span>
         <div>⌛: {{getTotalTimeForTicket(ticket.issueKey)}} minutes</div>
         <div>📅: <button (click)="openDetails(ticket.issueKey)">{{getMeetingsByTicket(ticket.issueKey).length}} meetings assignés</button></div>
     </div>
