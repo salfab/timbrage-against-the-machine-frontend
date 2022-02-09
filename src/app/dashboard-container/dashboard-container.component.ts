@@ -89,6 +89,5 @@ export class DashboardContainerComponent implements OnInit {
     public assignedMeetingsUpdated(changeAssignedMeetingsEvent: ChangeAssignedMeetingsEvent) : void {
         this.assignedMeetings = changeAssignedMeetingsEvent.assignedMeetings;
         this.assignedMeetings = [...this.assignedMeetings];
-        debugger
     }
 }

@@ -121,7 +121,6 @@ export class TicketsContainerComponent implements OnInit {
     public unassignMeeting(assignedMeeting: AssignedMeeting): void {
         const deassignedMeetings = this.assignedMeetings.splice(this.assignedMeetings.indexOf(assignedMeeting), 1);
         this.assignedMeetingsUpdated.emit(new ChangeAssignedMeetingsEvent(this.assignedMeetings, deassignedMeetings));
-        debugger
     }
     
 }

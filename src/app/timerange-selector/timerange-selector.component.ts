@@ -46,7 +46,6 @@ export class TimerangeSelectorComponent implements OnInit {
     }
 
     public changeToPreviousRange() {
-        debugger
         const timeRange = this.timeRangeService.previous(this.mode,this.startDate);
         this.populateFromTimeRange(timeRange);
         this.timerangeChanged.emit(timeRange);
