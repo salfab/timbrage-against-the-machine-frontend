@@ -17,7 +17,7 @@ export class TeamsApiService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}` })
           };
-        return this.http.get<CalendarEventsResponse>(`http://localhost:3000/api/calendars/me/calendar-events?StartDate=${startDate.toISOString()}&EndDate=${endDate.toISOString()}`, httpOptions);
+        return this.http.get<CalendarEventsResponse>(`/api/calendars/me/calendar-events?StartDate=${startDate.toISOString()}&EndDate=${endDate.toISOString()}`, httpOptions);
           // details for a given meeting is on URL : https://teams.microsoft.com/api/mt/emea/beta/me/calendarEvents/AAMkAGE3MWRjNjM0LTVlM2QtNDM4NS1iZmIxLTJjMTY4NDQyNTQwYQBGAAAAAABRawK5h15_S4aNZFtTlSkgBwCPvK8Y3ezTQ7UVKjhZq8_RAAAAnKNzAABhDI-fWRcMQq87E8bANgGnAAHKRrqsAAA=?useICalUId=false&eventType=&eventStartDateTime=
     }
     generateStubbedJson() {
