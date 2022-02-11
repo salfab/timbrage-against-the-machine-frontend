@@ -1,0 +1,11 @@
+{
+    "/api": {
+        "target": "https://teams.microsoft.com/api/mt/emea/beta/me/calendarEvents",
+        "secure": true,
+        "changeOrigin": true,
+        "debug": true,
+        "pathRewrite": {
+            "^/api/calendars/me/calendar-events": ""
+        }
+    }
+}
